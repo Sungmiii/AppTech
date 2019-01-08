@@ -6,15 +6,38 @@ import { CardSection } from './common'
 import * as actions from '../actions'
 
 class ListItem extends React.Component {
+    renderDescription() {
+        const { library, selectedLibraryId } = this.props
+        if (library.id === selectedLibraryId) {
+            return (
+                <Text>
+                    {library.description}
+                </Text>
+            )
+        }
+    }
     render() {
+        const { id, title } = this.props.library
         return (
-            <CardSection>
-                <Text style={styles.titleStyle}>{this.props.library.title}</Text>
-            </CardSection>
+            <TouchableWithoutFeedback
+                onPress={() => this.props.selectLibrary(id)}
+            >
+                <View>
+                    <CardSection>
+                        <Text style={styles.titleStyle}>{title}</Text>
+                    </CardSection>
+                    {this.renderDescription()}
+                </View>
+            </TouchableWithoutFeedback>
         )
     }
 }
 
+const mapStateToProps = state => {
+    return {
+        selectedLibraryId: state.selectedLibraryId
+    }
+}
 const styles = StyleSheet.create({
     titleStyle: {
         fontSize: 18,
@@ -22,4 +45,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default connect(null, actions)(ListItem)
+export default connect(mapStateToProps, actions)(ListItem)

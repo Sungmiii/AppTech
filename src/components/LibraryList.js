@@ -6,7 +6,6 @@ import ListItem from './ListItem'
 
 class LibraryList extends React.Component {
     renderItem(library) {
-        console.log('what data ', library.item.id)
         return <ListItem library={library.item} />
     }
     render() {
