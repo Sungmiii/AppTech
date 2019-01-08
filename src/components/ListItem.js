@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, StyleSheet } from 'react-native'
+import { Text, StyleSheet, TouchableWithoutFeedback, View } from 'react-native'
 import { connect } from 'react-redux'
 
 import { CardSection } from './common'
